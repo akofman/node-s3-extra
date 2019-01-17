@@ -1,0 +1,30 @@
+{
+    "name": "s3-extra",
+    "version": "0.0.1",
+    "main": "./lib/index.js",
+    "description": "Extend AWS SDK S3 class",
+    "author": {
+        "name": "Alexis Kofman",
+        "email": "alexis.kofman@gmail.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/akofman/node-s3-extra.git"
+    },
+    "files": [
+        "index.js"
+    ],
+    "keywords": [
+        "aws",
+        "s3",
+        "s3-extra",
+        "extra"
+    ],
+    "dependencies": {
+        "parse-aws-s3-url": "^1.0.1"
+    },
+    "peerDependencies": {
+        "aws-sdk": "^2.389.0"
+    }
+}
