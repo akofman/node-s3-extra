@@ -22,9 +22,13 @@
         "extra"
     ],
     "dependencies": {
+        "mime": "^2.4.0",
         "parse-aws-s3-url": "^1.0.1"
     },
     "peerDependencies": {
-        "aws-sdk": "^2.389.0"
+        "aws-sdk": "*"
+    },
+    "devDependencies": {
+        "aws-sdk": "*"
     }
 }
