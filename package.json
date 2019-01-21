@@ -1,6 +1,6 @@
 {
     "name": "s3-extra",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "main": "./lib/index.js",
     "description": "Extend AWS SDK S3 class",
     "author": {
@@ -22,13 +22,15 @@
         "extra"
     ],
     "dependencies": {
-        "mime": "^2.4.0",
-        "parse-aws-s3-url": "^1.0.1"
+        "debug": "4.1.1",
+        "mime": "2.4.0",
+        "parse-aws-s3-url": "1.0.1"
     },
     "peerDependencies": {
         "aws-sdk": "*"
     },
     "devDependencies": {
-        "aws-sdk": "*"
+        "aws-sdk": "*",
+        "eslint": "^5.12.1"
     }
 }
