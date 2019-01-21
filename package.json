@@ -31,6 +31,10 @@
     },
     "devDependencies": {
         "aws-sdk": "*",
+        "documentation": "^9.1.1",
         "eslint": "^5.12.1"
+    },
+    "scripts": {
+        "doc": "documentation readme lib/index.js --section=API"
     }
 }
