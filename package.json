@@ -35,6 +35,7 @@
         "eslint": "^5.12.1"
     },
     "scripts": {
+        "lint": "eslint .",
         "doc": "documentation readme lib/index.js --section=API"
     }
 }
