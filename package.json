@@ -1,8 +1,8 @@
 {
     "name": "s3-extra",
     "version": "0.1.0",
-    "main": "./lib/index.js",
-    "description": "Extend AWS SDK S3 class",
+    "main": "lib/index.js",
+    "description": "Convenient extra methods for the AWS.S3 service.",
     "author": {
         "name": "Alexis Kofman",
         "email": "alexis.kofman@gmail.com"

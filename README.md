@@ -4,7 +4,7 @@
 
 ## Install
 
-    $ npm install node-s3-extra
+    $ npm install s3-extra
 
 ## Usage
 
