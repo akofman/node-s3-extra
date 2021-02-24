@@ -8,34 +8,30 @@
 
 ## Usage
 
-You don't need to create the original s3 object anymore, this one is included into s3-extra.
-
-Some methods can override the name of the original ones like the `upload` method, but if needed, you can retrieve them by adding the `orig` prefix.
-So in order to use the original `upload` method, simply use `origUpload` instead.
-
 ```js
-const AWS = require('aws-sdk');
-const s3 = require('s3-extra')({ AWS });
+const s3 = require("s3-extra")({ uploadConcurrency: 50 });
 
-//use it as usual when you were using the original s3 object.
-var params = {Bucket: 'bucket', Key: 'key', Body: stream};
+// original s3 api services are still reachable
+var params = { Bucket: "bucket", Key: "key", Body: stream };
 s3.putObject(params, (err, data) => {
   console.log(err, data);
 });
 
-//and enjoy the extra methods:
+// plus some extra methods
 
 try {
-    //retrieve an S3 object stream from its url.
-    const objStream = s3.getObjectStream('s3://my-bucket/my/object/filename');
+  // retrieve an S3 object stream from its url
+  const objStream = s3.getObjectStream("s3://my-bucket/my/object/filename");
 
-    //upload a folder and keep the same hierarchy.
-    await s3.upload('my/local/folder/path/', 's3://my-bucket/path/', { ACL: 'public-read' });
+  // upload a folder and keep the same hierarchy
+  await s3.upload("my/local/folder/path/", "s3://my-bucket/path/", {
+    ACL: "public-read",
+  });
 
-    //or simply upload a file
-    await s3.upload('my/local/folder/path/file.txt', 's3://my-bucket/path/');
+  // or just upload a file
+  await s3.upload("my/local/folder/path/file.txt", "s3://my-bucket/path/");
 } catch (err) {
-    throw err;
+  throw err;
 }
 ```
 
@@ -47,7 +43,7 @@ try {
 
 -   [getObjectStream](#getobjectstream)
     -   [Parameters](#parameters)
--   [upload](#upload)
+-   [uploadFileOrFolder](#uploadfileorfolder)
     -   [Parameters](#parameters-1)
 
 ### getObjectStream
@@ -61,15 +57,14 @@ Retrieves objects from Amazon S3.
 
 Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** a stream object.
 
-### upload
+### uploadFileOrFolder
 
-Uploads an object or a folder of objects to Amazon S3.
-This method overrides the original upload method. In order to use the original one please use origUpload() instead.
+Uploads a file or a folder to Amazon S3.
 
 #### Parameters
 
 -   `content` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a path to a file or a folder to upload.
--   `s3Url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a valid s3 url reprensenting the location to put the content. In case of a folder, this url must ended by '/'.
+-   `s3Url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a valid s3 url representing the location to put the content. In case of a folder, this url must be ended by '/'.
 -   `params` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** the same params as the AWS [upload](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property) method are accepted. (optional, default `{}`)
 
 Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** a promise.
