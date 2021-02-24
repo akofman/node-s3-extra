@@ -1,41 +1,43 @@
 {
-    "name": "s3-extra",
-    "version": "0.1.1",
-    "main": "lib/index.js",
-    "description": "Convenient extra methods for the AWS.S3 service.",
-    "author": {
-        "name": "Alexis Kofman",
-        "email": "alexis.kofman@gmail.com"
-    },
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/akofman/node-s3-extra.git"
-    },
-    "files": [
-        "index.js"
-    ],
-    "keywords": [
-        "aws",
-        "s3",
-        "s3-extra",
-        "extra"
-    ],
-    "dependencies": {
-        "debug": "4.1.1",
-        "mime": "2.4.0",
-        "parse-aws-s3-url": "1.0.1"
-    },
-    "peerDependencies": {
-        "aws-sdk": "*"
-    },
-    "devDependencies": {
-        "aws-sdk": "*",
-        "documentation": "^9.1.1",
-        "eslint": "^5.12.1"
-    },
-    "scripts": {
-        "lint": "eslint .",
-        "doc": "documentation readme lib/index.js --section=API"
-    }
+  "name": "s3-extra",
+  "version": "0.1.1",
+  "main": "lib/index.js",
+  "description": "Convenient extra methods for the AWS.S3 service.",
+  "author": {
+    "name": "Alexis Kofman",
+    "email": "alexis.kofman@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akofman/node-s3-extra.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "aws",
+    "s3",
+    "s3-extra",
+    "extra"
+  ],
+  "dependencies": {
+    "file-type": "^16.2.0",
+    "p-queue": "^6.6.2",
+    "parse-aws-s3-url": "^1.0.1"
+  },
+  "peerDependencies": {
+    "aws-sdk": "*"
+  },
+  "devDependencies": {
+    "aws-sdk": "*",
+    "documentation": "^9.1.1",
+    "eslint": "^5.12.1",
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest",
+    "doc": "documentation readme lib/index.js --section=API"
+  }
 }
