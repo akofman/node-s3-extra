@@ -59,12 +59,12 @@ Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### uploadFileOrFolder
 
-Uploads a file or a folder to Amazon S3.
+Uploads a file or a folder to an Amazon S3 bucket.
 
 #### Parameters
 
 -   `content` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a path to a file or a folder to upload.
--   `s3Url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a valid s3 url representing the location to put the content. In case of a folder, this url must be ended by '/'.
+-   `s3Url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a valid s3 url representing the location to put the content.
 -   `params` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** the same params as the AWS [upload](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property) method are accepted. (optional, default `{}`)
 
 Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** a promise.
