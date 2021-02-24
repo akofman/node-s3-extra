@@ -17,7 +17,16 @@ jest.mock('fs', () => {
   return {
     lstatSync: jest.fn(),
     readdirSync: jest.fn(() => ['file1.jpg', 'file2.txt']),
-    createReadStream: jest.fn(() => Buffer.from('file'))
+    createReadStream: jest.fn(() => 'Body')
+  };
+});
+
+jest.mock('file-type', () => {
+  return {
+    fromStream: jest.fn(() => ({
+      mime: 'type/test',
+      ext: 'test'
+    }))
   };
 });
 
@@ -27,13 +36,19 @@ afterEach(() => {
 
 describe('uploadFileOrFolder tests', () => {
   it('should upload a file to an s3 url', async () => {
-    await uploadFileOrFolder(Buffer.from('jpg'), 's3://bucket/key.jpg');
+    fs.lstatSync.mockImplementation(() => ({
+      isDirectory: () => false,
+      isFile: () => true
+    }));
+
+    await uploadFileOrFolder('path/to/a/file', 's3://bucket/key.jpg');
+
     expect(mockS3.upload).toHaveBeenCalledTimes(1);
     expect(mockS3.upload).toHaveBeenCalledWith({
       Bucket: 'bucket',
       Key: 'key.jpg',
-      Body: Buffer.from('jpg'),
-      ContentType: undefined
+      Body: 'Body',
+      ContentType: 'type/test'
     });
   });
 
@@ -47,18 +62,19 @@ describe('uploadFileOrFolder tests', () => {
       }));
 
     await uploadFileOrFolder('/local/folder/', 's3://bucket/folder/');
+
     expect(mockS3.upload).toHaveBeenCalledTimes(2);
     expect(mockS3.upload).toHaveBeenCalledWith({
       Bucket: 'bucket',
       Key: 'folder/file2.txt',
-      Body: Buffer.from('file'),
-      ContentType: undefined
+      Body: 'Body',
+      ContentType: 'type/test'
     });
     expect(mockS3.upload).toHaveBeenCalledWith({
       Bucket: 'bucket',
       Key: 'folder/file1.jpg',
-      Body: Buffer.from('file'),
-      ContentType: undefined
+      Body: 'Body',
+      ContentType: 'type/test'
     });
   });
 });
