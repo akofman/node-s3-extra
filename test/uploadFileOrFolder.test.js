@@ -1,16 +1,16 @@
 const mockS3 = {
   upload: jest.fn().mockReturnThis(),
   promise: jest.fn().mockResolvedValue({
-    ETag: "mock-etag",
-    Location: "mock-location",
+    ETag: 'mock-etag',
+    Location: 'mock-location'
   })
 };
 
-const { uploadFileOrFolder } = require('../lib')();
 const fs = require('fs');
+const { uploadFileOrFolder } = require('../lib')();
 
 jest.mock('aws-sdk', () => {
-  return { S3: jest.fn(() => (mockS3)) };
+  return { S3: jest.fn(() => mockS3) };
 });
 
 jest.mock('fs', () => {
@@ -38,11 +38,13 @@ describe('uploadFileOrFolder tests', () => {
   });
 
   it('should upload a folder from an s3 url', async () => {
-    fs.lstatSync.mockImplementationOnce(() => ({
-      isDirectory: () => true
-    })).mockImplementation(() => ({
-      isDirectory: () => false
-    }));
+    fs.lstatSync
+      .mockImplementationOnce(() => ({
+        isDirectory: () => true
+      }))
+      .mockImplementation(() => ({
+        isDirectory: () => false
+      }));
 
     await uploadFileOrFolder('/local/folder/', 's3://bucket/folder/');
     expect(mockS3.upload).toHaveBeenCalledTimes(2);
