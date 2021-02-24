@@ -80,7 +80,6 @@
             "beside"
         ],
         "indent": "error",
-        "indent-legacy": "error",
         "init-declarations": "error",
         "jsx-quotes": "error",
         "key-spacing": "error",
@@ -91,7 +90,7 @@
                 "before": true
             }
         ],
-        "line-comment-position": "error",
+        "line-comment-position": ["error", 2],
         "linebreak-style": [
             "error",
             "unix"
@@ -113,7 +112,6 @@
         "new-parens": "error",
         "newline-after-var": "off",
         "newline-before-return": "off",
-        "newline-per-chained-call": "error",
         "no-alert": "error",
         "no-array-constructor": "error",
         "no-async-promise-executor": "off",
