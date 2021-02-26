@@ -1,6 +1,6 @@
 {
   "name": "s3-extra",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "lib/index.js",
   "description": "Convenient extra methods for the AWS.S3 service.",
   "author": {
