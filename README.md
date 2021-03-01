@@ -24,12 +24,15 @@ try {
   const objStream = s3.getObjectStream('s3://my-bucket/my/object/filename');
 
   // upload a folder and keep the same hierarchy
-  await s3.upload('my/local/folder/path/', 's3://my-bucket/path/', {
+  await s3.uploadFileOrFolder('my/local/folder/path/', 's3://my-bucket/path/', {
     ACL: 'public-read'
   });
 
   // or just upload a file
-  await s3.upload('my/local/folder/path/file.txt', 's3://my-bucket/path/');
+  await s3.uploadFileOrFolder(
+    'my/local/folder/path/file.txt',
+    's3://my-bucket/path/'
+  );
 } catch (err) {
   throw err;
 }
@@ -63,7 +66,7 @@ Uploads a file or a folder to an Amazon S3 bucket.
 
 #### Parameters
 
-- `content` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a path to a file or a folder to upload.
+- `contentPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a path to a file or a folder to upload.
 - `s3Url` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a valid s3 url representing the location to put the content.
 - `params` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** the same params as the AWS [upload](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property) method are accepted. (optional, default `{}`)
 
